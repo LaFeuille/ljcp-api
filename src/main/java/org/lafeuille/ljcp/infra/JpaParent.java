@@ -12,17 +12,16 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.UUID;
-import java.util.concurrent.ThreadLocalRandom;
 
 @MappedSuperclass
-public abstract class JpaParent implements Persistable<Long>, Serializable {
+public abstract class JpaParent implements Persistable<UUID>, Serializable {
+
+    @Id
+    private UUID id = UUID.randomUUID();
 
     @Column(updatable = false)
     @CreatedDate
     private Timestamp createdDate = Timestamp.from(Instant.now());
-
-    @Id
-    private long id = ThreadLocalRandom.current().nextLong();
 
     @LastModifiedDate
     @Version
@@ -33,17 +32,7 @@ public abstract class JpaParent implements Persistable<Long>, Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (!(o instanceof JpaParent))
-            return false;
-        JpaParent that = (JpaParent) o;
-        return id == that.id;
-    }
-
-    @Override
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
@@ -56,8 +45,16 @@ public abstract class JpaParent implements Persistable<Long>, Serializable {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        JpaParent jpaParent = (JpaParent) o;
+        return id.equals(jpaParent.id);
+    }
+
+    @Override
     public int hashCode() {
-        return (int) (id ^ (id >>> 32));
+        return id.hashCode();
     }
 
     @Override
