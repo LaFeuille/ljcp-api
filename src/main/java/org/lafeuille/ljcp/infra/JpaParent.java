@@ -40,10 +40,6 @@ public abstract class JpaParent implements Persistable<UUID>, Serializable {
         return lastModifiedDate == null ? null : lastModifiedDate.toInstant();
     }
 
-    public UUID getUUID() {
-        return UUID.nameUUIDFromBytes(String.valueOf(id).getBytes());
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
