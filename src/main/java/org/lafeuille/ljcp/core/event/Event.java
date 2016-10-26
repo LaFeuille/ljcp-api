@@ -1,7 +1,7 @@
 package org.lafeuille.ljcp.core.event;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.lafeuille.ljcp.infra.JpaParent;
+import org.lafeuille.ljcp.infra.JpaBase;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-public class Event extends JpaParent {
+public class Event extends JpaBase {
 
     @Column(length = Lengths.TITLE)
     @Size(max = Lengths.TITLE)

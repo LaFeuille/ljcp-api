@@ -14,7 +14,7 @@ import java.time.Instant;
 import java.util.UUID;
 
 @MappedSuperclass
-public abstract class JpaParent implements Persistable<UUID>, Serializable {
+public abstract class JpaBase implements Persistable<UUID>, Serializable {
 
     @Id
     private UUID id = UUID.randomUUID();
@@ -44,8 +44,8 @@ public abstract class JpaParent implements Persistable<UUID>, Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        JpaParent jpaParent = (JpaParent) o;
-        return id.equals(jpaParent.id);
+        JpaBase jpaBase = (JpaBase) o;
+        return id.equals(jpaBase.id);
     }
 
     @Override
