@@ -38,7 +38,7 @@ public class Event extends JpaBase {
     }
 
     public LocalDate getStartDate() {
-        return startDate.toLocalDate();
+        return startDate == null ? null : startDate.toLocalDate();
     }
 
     public LocalTime getStartTime() {

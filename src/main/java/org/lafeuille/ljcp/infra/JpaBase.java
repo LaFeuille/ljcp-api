@@ -1,5 +1,6 @@
 package org.lafeuille.ljcp.infra;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.domain.Persistable;
@@ -53,6 +54,7 @@ public abstract class JpaBase implements Persistable<UUID>, Serializable {
         return id.hashCode();
     }
 
+    @JsonIgnore
     @Override
     public boolean isNew() {
         return lastModifiedDate == null;

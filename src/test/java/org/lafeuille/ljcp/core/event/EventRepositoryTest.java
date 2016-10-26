@@ -1,9 +1,7 @@
-package org.lafeuille.ljcp.event;
+package org.lafeuille.ljcp.core.event;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.lafeuille.ljcp.core.event.Event;
-import org.lafeuille.ljcp.core.event.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
