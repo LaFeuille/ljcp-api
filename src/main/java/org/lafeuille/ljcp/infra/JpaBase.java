@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -22,14 +21,14 @@ public abstract class JpaBase implements Persistable<UUID>, Serializable {
 
     @Column(updatable = false)
     @CreatedDate
-    private Timestamp createdDate = Timestamp.from(Instant.now());
+    private Instant createdDate = Instant.now();
 
     @LastModifiedDate
     @Version
-    private Timestamp lastModifiedDate;
+    private Instant lastModifiedDate;
 
     public Instant getCreatedDate() {
-        return createdDate.toInstant();
+        return createdDate;
     }
 
     @Override
@@ -38,7 +37,7 @@ public abstract class JpaBase implements Persistable<UUID>, Serializable {
     }
 
     public Instant getLastModifiedDate() {
-        return lastModifiedDate == null ? null : lastModifiedDate.toInstant();
+        return lastModifiedDate;
     }
 
     @Override

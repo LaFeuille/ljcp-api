@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.sql.Date;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -25,9 +23,9 @@ public class Event extends JpaBase {
     private String description;
 
     @NotNull
-    private Date startDate;
+    private LocalDate startDate;
 
-    private Time startTime;
+    private LocalTime startTime;
 
     public String getTitle() {
         return title;
@@ -46,19 +44,19 @@ public class Event extends JpaBase {
     }
 
     public LocalDate getStartDate() {
-        return startDate == null ? null : startDate.toLocalDate();
+        return startDate;
     }
 
     public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate == null ? null : Date.valueOf(startDate);
+        this.startDate = startDate;
     }
 
     public LocalTime getStartTime() {
-        return startTime == null ? null : startTime.toLocalTime();
+        return startTime;
     }
 
     public void setStartTime(LocalTime startTime) {
-        this.startTime = startTime == null ? null : Time.valueOf(startTime);
+        this.startTime = startTime;
     }
 
     /**
