@@ -28,7 +28,8 @@ public class EventControllerTest {
 
     @Test
     public void foo() throws Exception {
-        mvc.perform(get("/event/{id}", UUID.randomUUID()).accept(MediaType.APPLICATION_JSON))
+        mvc.perform(get("/event/{id}", UUID.randomUUID())
+                .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
