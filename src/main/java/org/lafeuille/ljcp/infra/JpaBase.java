@@ -42,8 +42,10 @@ public abstract class JpaBase implements Persistable<UUID>, Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         JpaBase jpaBase = (JpaBase) o;
         return id.equals(jpaBase.id);
     }
