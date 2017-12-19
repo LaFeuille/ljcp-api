@@ -1,20 +1,18 @@
 package org.lafeuille.ljcp.core.event;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.lafeuille.ljcp.infra.JpaParent;
+import org.lafeuille.ljcp.infra.JpaBase;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.sql.Date;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-public class Event extends JpaParent {
+public class Event extends JpaBase {
 
     @Column(length = Lengths.TITLE)
     @Size(max = Lengths.TITLE)
@@ -25,24 +23,40 @@ public class Event extends JpaParent {
     private String description;
 
     @NotNull
-    private Date startDate;
+    private LocalDate startDate;
 
-    private Time startTime;
+    private LocalTime startTime;
 
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public LocalDate getStartDate() {
-        return startDate.toLocalDate();
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 
     public LocalTime getStartTime() {
-        return startTime == null ? null : startTime.toLocalTime();
+        return startTime;
+    }
+
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
     }
 
     /**
