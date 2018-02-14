@@ -9,23 +9,40 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.UUID;
+
+import static java.util.Objects.requireNonNull;
 
 @MappedSuperclass
 public abstract class JpaBase implements Persistable<UUID>, Serializable {
 
     @Id
-    private UUID id = UUID.randomUUID();
+    private UUID id;
 
     @Column(updatable = false)
     @CreatedDate
-    private Instant createdDate = Instant.now();
+    private Instant createdDate;
 
     @LastModifiedDate
     @Version
     private Instant lastModifiedDate;
+
+    private JpaBase(@NotNull UUID id, Instant createdDate, Instant lastModifiedDate) {
+        this.id = requireNonNull(id);
+        this.createdDate = requireNonNull(createdDate);
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    private JpaBase(JpaBase base) {
+        this(base.id, base.createdDate, base.lastModifiedDate);
+    }
+
+    public JpaBase() {
+        this(UUID.randomUUID(), Instant.now(), null);
+    }
 
     public Instant getCreatedDate() {
         return createdDate;
