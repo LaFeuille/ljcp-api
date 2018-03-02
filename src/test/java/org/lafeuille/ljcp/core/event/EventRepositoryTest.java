@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -27,9 +28,9 @@ public class EventRepositoryTest {
     public void put_and_get() {
         Event raw = new Event();
         UUID id = this.entityManager.persistAndGetId(raw, UUID.class);
-        Event retrieved = repository.findOne(id);
+        Optional<Event> retrieved = repository.findById(id);
 
-        assertThat(retrieved).isNotNull();
+        assertThat(retrieved).isPresent();
     }
 
     @Test
