@@ -12,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import java.util.UUID;
 
@@ -38,7 +37,7 @@ public class EventControllerTest {
 
         @Bean
         WebMvcConfigurer configurer() {
-            return new WebMvcConfigurerAdapter() {
+            return new WebMvcConfigurer() {
                 @Override
                 public void addFormatters(FormatterRegistry registry) {
                     registry.addConverter(String.class, Event.class, id -> new Event());
