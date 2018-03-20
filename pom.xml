@@ -97,6 +97,18 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>${dockerfile.maven.version}</version>
+                <configuration>
+                    <repository>LaFeuille/ljcp-api</repository>
+                    <tag>${project.version}</tag>
+                    <buildArgs>
+                        <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+                    </buildArgs>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
@@ -127,36 +139,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>docker</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.spotify</groupId>
-                        <artifactId>dockerfile-maven-plugin</artifactId>
-                        <version>${dockerfile.maven.version}</version>
-                        <executions>
-                            <execution>
-                                <id>default</id>
-                                <goals>
-                                    <goal>build</goal>
-                                    <goal>push</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <repository>LaFeuille/ljcp-api</repository>
-                            <tag>${project.version}</tag>
-                            <buildArgs>
-                                <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
-                            </buildArgs>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 
 </project>
