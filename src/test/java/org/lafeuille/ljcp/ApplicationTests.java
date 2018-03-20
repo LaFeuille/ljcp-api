@@ -14,8 +14,6 @@ public class ApplicationTests {
 
     @Test
     public void application() throws Exception {
-        LocalDate.now().datesUntil(LocalDate.now().plusYears(1), Period.ofWeeks(1))
-        .forEach(System.out::println);
     }
 
 }
