@@ -30,7 +30,7 @@ public abstract class JpaBase implements Persistable<UUID>, Serializable {
     @Version
     private Instant lastModifiedDate;
 
-    private JpaBase(@NotNull UUID id, Instant createdDate, Instant lastModifiedDate) {
+    private JpaBase(@NotNull UUID id, @NotNull Instant createdDate, Instant lastModifiedDate) {
         this.id = requireNonNull(id);
         this.createdDate = requireNonNull(createdDate);
         this.lastModifiedDate = lastModifiedDate;

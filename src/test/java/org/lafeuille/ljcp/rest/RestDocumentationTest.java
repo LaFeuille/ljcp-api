@@ -16,6 +16,7 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -43,6 +44,15 @@ public class RestDocumentationTest {
     }
 
     @Test
+    public void GET_actuator_health() throws Exception {
+        mockMvc.perform(get("/actuator/health")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.status").value("UP"))
+                .andDo(document("actuator/health/GET"));
+    }
+
+    @Test
     public void GET_events() throws Exception {
         mockMvc.perform(get("/events")
                 .accept(MediaType.APPLICATION_JSON))
@@ -50,6 +60,20 @@ public class RestDocumentationTest {
                 .andExpect(jsonPath("$._embedded.events").isEmpty())
                 .andExpect(jsonPath("$.page.size").value(20))
                 .andDo(document("events/GET"));
+    }
+
+    @Test
+    public void POST_events() throws Exception {
+        mockMvc.perform(post("/events")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"title\":\"My birthday\", \"description\":\"Party for my birthday\", \"startDate\":\"1982-08-07\", \"startTime\":\"18:30:00\"}"))
+                .andExpect(status().is(201))
+                .andExpect(jsonPath("title").value("My birthday"))
+                .andExpect(jsonPath("description").value("Party for my birthday"))
+                .andExpect(jsonPath("startDate").value("1982-08-07"))
+                .andExpect(jsonPath("startTime").value("18:30:00"))
+                .andDo(document("events/POST"));
     }
 
 }
