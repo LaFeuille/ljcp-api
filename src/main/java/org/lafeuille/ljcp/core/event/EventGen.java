@@ -4,6 +4,7 @@ import com.github.javafaker.Faker;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.stereotype.Component;
 
+import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
@@ -15,15 +16,18 @@ import java.util.function.Supplier;
 @ConditionalOnClass(Faker.class)
 public class EventGen implements Supplier<Event> {
 
+    private final Clock clock;
+
     private final Faker faker;
 
-    public EventGen(Faker faker) {
+    public EventGen(Clock clock, Faker faker) {
+        this.clock = clock;
         this.faker = faker;
     }
 
     @Override
     public Event get() {
-        Event event = new Event();
+        Event event = new Event(clock);
         event.setTitle(
                 faker.lorem().sentence());
         event.setDescription(

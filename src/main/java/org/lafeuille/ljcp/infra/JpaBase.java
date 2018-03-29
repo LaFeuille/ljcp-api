@@ -11,6 +11,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.Clock;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -36,12 +37,16 @@ public abstract class JpaBase implements Persistable<UUID>, Serializable {
         this.lastModifiedDate = lastModifiedDate;
     }
 
-    private JpaBase(JpaBase base) {
+    private JpaBase(@NotNull JpaBase base) {
         this(base.id, base.createdDate, base.lastModifiedDate);
     }
 
+    protected JpaBase(@NotNull Clock clock) {
+        this(UUID.randomUUID(), Instant.now(clock), null);
+    }
+
     public JpaBase() {
-        this(UUID.randomUUID(), Instant.now(), null);
+        this(Clock.systemUTC());
     }
 
     public Instant getCreatedDate() {
