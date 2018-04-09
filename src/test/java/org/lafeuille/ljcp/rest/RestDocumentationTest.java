@@ -53,6 +53,18 @@ public class RestDocumentationTest {
     }
 
     @Test
+    public void GET_actuator_info() throws Exception {
+        mockMvc.perform(get("/actuator/info")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.app.description").isNotEmpty())
+                .andExpect(jsonPath("$.build.artifact").value("ljcp-api"))
+                .andExpect(jsonPath("$.build.name").value("ljcp-api"))
+                .andExpect(jsonPath("$.build.group").value("org.lafeuille"))
+                .andDo(document("actuator/info/GET"));
+    }
+
+    @Test
     public void GET_events() throws Exception {
         mockMvc.perform(get("/events")
                 .accept(MediaType.APPLICATION_JSON))
