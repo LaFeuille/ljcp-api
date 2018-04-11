@@ -1,10 +1,5 @@
 FROM openjdk:9-jre
-MAINTAINER Olivier Le Merdy <olemerdy@lafeuille.org>
-
-ENTRYPOINT ["/usr/bin/java", "-jar", "/usr/share/myservice/myservice.jar"]
-
-# Add Maven dependencies (not shaded into the artifact; Docker-cached)
-# ADD target/lib           /usr/share/myservice/lib
-# Add the service itself
+VOLUME /tmp
 ARG JAR_FILE
-ADD target/${JAR_FILE} /usr/share/myservice/myservice.jar
+ADD target/${JAR_FILE} /usr/share/lafeuille/ljcp-api.jar
+ENTRYPOINT ["/usr/bin/java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/usr/share/lafeuille/ljcp-api.jar"]

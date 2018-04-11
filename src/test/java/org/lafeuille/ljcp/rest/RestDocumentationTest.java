@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import static org.junit.Assume.assumeTrue;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -54,6 +55,8 @@ public class RestDocumentationTest {
 
     @Test
     public void GET_actuator_info() throws Exception {
+        assumeTrue(context.getResource("META-INF/build-info.properties").exists());
+
         mockMvc.perform(get("/actuator/info")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
