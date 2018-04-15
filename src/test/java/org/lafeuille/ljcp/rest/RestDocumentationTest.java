@@ -55,7 +55,7 @@ public class RestDocumentationTest {
 
     @Test
     public void GET_actuator_info() throws Exception {
-        assumeTrue(context.getResource("META-INF/build-info.properties").exists());
+        assumeTrue(context.getResource("classpath:META-INF/build-info.properties").exists());
 
         mockMvc.perform(get("/actuator/info")
                 .accept(MediaType.APPLICATION_JSON))

@@ -8,7 +8,6 @@ import javax.persistence.Lob;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.Clock;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -30,10 +29,6 @@ public class Event extends JpaBase {
 
     public Event() {
         super();
-    }
-
-    public Event(@NotNull Clock clock) {
-        super(clock);
     }
 
     public String getTitle() {
