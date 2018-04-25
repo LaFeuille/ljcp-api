@@ -9,7 +9,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.Optional;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,17 +25,17 @@ public class EventRepositoryTest {
 
     @Test
     public void put_and_get() {
-        Event raw = new Event();
-        UUID id = this.entityManager.persistAndGetId(raw, UUID.class);
-        Optional<Event> retrieved = repository.findById(id);
+        var raw = new Event();
+        var id = this.entityManager.persistAndGetId(raw, UUID.class);
+        var retrieved = repository.findById(id);
 
         assertThat(retrieved).isPresent();
     }
 
     @Test
     public void put_many_and_count() {
-        for (int i = 0; i < 100; i++) {
-            Event event = new Event();
+        for (var i = 0; i < 100; i++) {
+            var event = new Event();
             event.setStartDate(
                     LocalDate.of(2001, Month.JANUARY, 1).plusDays(i));
             event.setTitle("Event " + i);

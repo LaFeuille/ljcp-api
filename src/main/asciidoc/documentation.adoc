@@ -1,1 +1,17 @@
+= Sample Document
+
+== GET /actuator/health
+
+operation::actuator/health/GET[]
+
+== GET /actuator/info
+
+operation::actuator/info/GET[]
+
+== GET /events
+
 operation::events/GET[]
+
+== POST /events
+
+operation::events/POST[]

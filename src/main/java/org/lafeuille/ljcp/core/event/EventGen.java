@@ -23,7 +23,7 @@ public class EventGen implements Supplier<Event> {
 
     @Override
     public Event get() {
-        Event event = new Event();
+        var event = new Event();
         event.setTitle(
                 faker.lorem().sentence());
         event.setDescription(

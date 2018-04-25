@@ -23,7 +23,7 @@ public class EventJsonTest {
 
     @Test
     public void event_write() throws IOException {
-        Event event = new Event();
+        var event = new Event();
         event.setTitle("My birthday");
         event.setDescription("Party for my birthday");
         event.setStartDate(LocalDate.of(1982, Month.AUGUST, 7));
