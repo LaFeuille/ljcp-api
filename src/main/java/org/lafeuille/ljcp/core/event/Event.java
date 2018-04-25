@@ -1,6 +1,8 @@
 package org.lafeuille.ljcp.core.event;
 
 import org.lafeuille.ljcp.infra.JpaBase;
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,6 +33,7 @@ public class Event extends JpaBase {
         super();
     }
 
+    @NonNull
     public String getTitle() {
         return title;
     }
@@ -39,6 +42,7 @@ public class Event extends JpaBase {
         this.title = title;
     }
 
+    @Nullable
     public String getDescription() {
         return description;
     }
@@ -47,6 +51,7 @@ public class Event extends JpaBase {
         this.description = description;
     }
 
+    @NonNull
     public LocalDate getStartDate() {
         return startDate;
     }
@@ -55,6 +60,7 @@ public class Event extends JpaBase {
         this.startDate = startDate;
     }
 
+    @Nullable
     public LocalTime getStartTime() {
         return startTime;
     }
