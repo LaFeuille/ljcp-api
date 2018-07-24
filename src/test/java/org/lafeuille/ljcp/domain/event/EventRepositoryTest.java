@@ -1,5 +1,6 @@
-package org.lafeuille.ljcp.core.event;
+package org.lafeuille.ljcp.domain.event;
 
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class EventRepositoryTest {
         var id = this.entityManager.persistAndGetId(raw, UUID.class);
         var retrieved = repository.findById(id);
 
-        assertThat(retrieved).isPresent();
+        Assertions.assertThat(retrieved).isPresent();
     }
 
     @Test

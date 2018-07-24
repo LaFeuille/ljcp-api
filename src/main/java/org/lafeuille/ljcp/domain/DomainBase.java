@@ -1,4 +1,4 @@
-package org.lafeuille.ljcp.infra;
+package org.lafeuille.ljcp.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
@@ -17,7 +17,7 @@ import java.util.UUID;
 import static java.util.Objects.requireNonNull;
 
 @MappedSuperclass
-public abstract class JpaBase implements Persistable<UUID>, Serializable {
+public abstract class DomainBase implements Persistable<UUID>, Serializable {
 
     @Id
     private UUID id;
@@ -30,17 +30,17 @@ public abstract class JpaBase implements Persistable<UUID>, Serializable {
     @Version
     private Instant lastModifiedDate;
 
-    private JpaBase(@NotNull UUID id, @NotNull Instant createdDate, Instant lastModifiedDate) {
+    private DomainBase(@NotNull UUID id, @NotNull Instant createdDate, Instant lastModifiedDate) {
         this.id = requireNonNull(id);
         this.createdDate = requireNonNull(createdDate);
         this.lastModifiedDate = lastModifiedDate;
     }
 
-    private JpaBase(@NotNull JpaBase base) {
-        this(base.id, base.createdDate, base.lastModifiedDate);
+    protected DomainBase(@NotNull DomainBase that) {
+        this(that.id, that.createdDate, that.lastModifiedDate);
     }
 
-    protected JpaBase() {
+    protected DomainBase() {
         this(UUID.randomUUID(), Instant.now(), null);
     }
 
@@ -63,8 +63,8 @@ public abstract class JpaBase implements Persistable<UUID>, Serializable {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        var jpaBase = (JpaBase) o;
-        return id.equals(jpaBase.id);
+        var that = (DomainBase) o;
+        return id.equals(that.id);
     }
 
     @Override
