@@ -1,7 +1,8 @@
-package org.lafeuille.ljcp.core.event;
+package org.lafeuille.ljcp.infra.event;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.lafeuille.ljcp.domain.event.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;

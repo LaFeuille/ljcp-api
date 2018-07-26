@@ -1,4 +1,4 @@
-package org.lafeuille.ljcp.core.event;
+package org.lafeuille.ljcp.domain.event;
 
 import com.github.javafaker.Faker;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;

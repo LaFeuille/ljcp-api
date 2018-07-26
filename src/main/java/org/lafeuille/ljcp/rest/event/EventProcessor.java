@@ -1,6 +1,6 @@
 package org.lafeuille.ljcp.rest.event;
 
-import org.lafeuille.ljcp.core.event.Event;
+import org.lafeuille.ljcp.domain.event.Event;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.ResourceProcessor;
 import org.springframework.stereotype.Component;

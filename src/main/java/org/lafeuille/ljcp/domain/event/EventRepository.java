@@ -1,4 +1,4 @@
-package org.lafeuille.ljcp.core.event;
+package org.lafeuille.ljcp.domain.event;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
