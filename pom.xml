@@ -24,12 +24,22 @@
         <asciidoctor.maven.version>1.5.6</asciidoctor.maven.version>
         <dockerfile.maven.version>1.4.4</dockerfile.maven.version>
         <ff4j.version>1.7.2</ff4j.version>
-        <java.version>10</java.version>
+        <java.version>11</java.version>
         <javafaker.version>0.16</javafaker.version>
         <javax-activation.version>1.1.1</javax-activation.version>
+        <!-- Begin Java 11 -->
+        <mockito.version>2.20.0</mockito.version>
+        <!-- End Java 11 -->
     </properties>
 
     <dependencies>
+        <!-- Begin Java 11 -->
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.23.1-GA</version>
+        </dependency>
+        <!-- End Java 11 -->
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
