@@ -14,19 +14,19 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.5.RELEASE</version>
+        <version>2.1.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <asciidoctor.maven.version>1.5.6</asciidoctor.maven.version>
-        <dockerfile.maven.version>1.4.4</dockerfile.maven.version>
-        <ff4j.version>1.7.2</ff4j.version>
-        <java.version>10</java.version>
+        <asciidoctor.maven.version>1.5.7.1</asciidoctor.maven.version>
+        <dockerfile.maven.version>1.4.8</dockerfile.maven.version>
+        <ff4j.version>1.7.3</ff4j.version>
+        <java.version>11</java.version>
         <javafaker.version>0.16</javafaker.version>
-        <javax-activation.version>1.1.1</javax-activation.version>
+        <javax-activation.version>1.2.0</javax-activation.version>
     </properties>
 
     <dependencies>
