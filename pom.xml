@@ -22,7 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <asciidoctor.maven.version>1.5.7.1</asciidoctor.maven.version>
-        <dockerfile.maven.version>1.4.8</dockerfile.maven.version>
+        <dockerfile.maven.version>1.4.9</dockerfile.maven.version>
         <ff4j.version>1.7.3</ff4j.version>
         <java.version>11</java.version>
         <javafaker.version>0.16</javafaker.version>
@@ -175,10 +175,16 @@
                         <version>${dockerfile.maven.version}</version>
                         <executions>
                             <execution>
-                                <id>default</id>
-                                <phase>install</phase>
+                                <id>build</id>
+                                <phase>package</phase>
                                 <goals>
                                     <goal>build</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>push</id>
+                                <phase>install</phase>
+                                <goals>
                                     <goal>push</goal>
                                 </goals>
                             </execution>
@@ -193,7 +199,7 @@
                         <dependencies>
                             <dependency>
                                 <groupId>javax.activation</groupId>
-                                <artifactId>activation</artifactId>
+                                <artifactId>javax.activation-api</artifactId>
                                 <version>${javax-activation.version}</version>
                             </dependency>
                         </dependencies>
