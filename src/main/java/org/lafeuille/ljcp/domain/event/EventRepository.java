@@ -8,5 +8,5 @@ import java.util.UUID;
 
 @CrossOrigin
 @Repository
-public interface EventRepository extends JpaRepository<Event, UUID> {
+public interface EventRepository extends JpaRepository<Event, UUID>, EventRepositoryCustom {
 }
