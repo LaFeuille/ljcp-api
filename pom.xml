@@ -14,22 +14,29 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.4.RELEASE</version>
+        <version>2.1.5.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <asciidoctor.maven.version>1.6.0</asciidoctor.maven.version>
+        <asciidoctor.maven.version>1.5.8</asciidoctor.maven.version>
+        <auth0-spring-security-api.version>1.2.1</auth0-spring-security-api.version>
         <dockerfile.maven.version>1.4.10</dockerfile.maven.version>
         <ff4j.version>1.8</ff4j.version>
         <java.version>11</java.version>
         <javafaker.version>0.18</javafaker.version>
         <javax-activation.version>1.2.0</javax-activation.version>
+        <testcontainers.version>1.11.2</testcontainers.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>auth0-spring-security-api</artifactId>
+            <version>${auth0-spring-security-api.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
@@ -80,6 +87,10 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
         <dependency>
@@ -119,7 +130,14 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
             <version>${spring-security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers</artifactId>
+            <scope>test</scope>
+            <version>${testcontainers.version}</version>
         </dependency>
     </dependencies>
 
