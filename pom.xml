@@ -21,14 +21,14 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <asciidoctor.maven.version>1.6.0</asciidoctor.maven.version>
+        <asciidoctor.maven.version>1.5.8</asciidoctor.maven.version>
         <auth0-spring-security-api.version>1.2.1</auth0-spring-security-api.version>
         <dockerfile.maven.version>1.4.10</dockerfile.maven.version>
         <ff4j.version>1.8</ff4j.version>
         <java.version>11</java.version>
         <javafaker.version>0.18</javafaker.version>
         <javax-activation.version>1.2.0</javax-activation.version>
-        <testcontainers.version>1.11.1</testcontainers.version>
+        <testcontainers.version>1.11.2</testcontainers.version>
     </properties>
 
     <dependencies>
