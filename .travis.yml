@@ -6,4 +6,5 @@ addons:
     organization: "lafeuille"
 
 script:
+  - ./mvnw org.owasp:dependency-check-maven:check
   - ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar

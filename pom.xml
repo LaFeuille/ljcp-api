@@ -22,13 +22,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <asciidoctor.maven.version>1.5.8</asciidoctor.maven.version>
-        <auth0-spring-security-api.version>1.2.3</auth0-spring-security-api.version>
+        <auth0-spring-security-api.version>1.2.4</auth0-spring-security-api.version>
+        <dependency-check.maven.version>5.2.0</dependency-check.maven.version>
         <dockerfile.maven.version>1.4.10</dockerfile.maven.version>
         <ff4j.version>1.8.1</ff4j.version>
+        <jacoco.maven.version>0.8.4</jacoco.maven.version>
         <java.version>11</java.version>
-        <javafaker.version>0.18</javafaker.version>
+        <javafaker.version>1.0.0</javafaker.version>
         <javax-activation.version>1.2.0</javax-activation.version>
-        <testcontainers.version>1.11.3</testcontainers.version>
+        <testcontainers.version>1.12.0</testcontainers.version>
     </properties>
 
     <dependencies>
@@ -142,6 +144,20 @@
     </dependencies>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacoco.maven.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.owasp</groupId>
+                    <artifactId>dependency-check-maven</artifactId>
+                    <version>${dependency-check.maven.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
