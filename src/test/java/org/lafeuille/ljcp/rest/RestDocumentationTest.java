@@ -18,6 +18,7 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.junit.Assume.assumeTrue;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
+import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -95,7 +96,16 @@ public class RestDocumentationTest {
                 .andExpect(jsonPath("description").value("Party for my birthday"))
                 .andExpect(jsonPath("startDate").value("1982-08-07"))
                 .andExpect(jsonPath("startTime").value("18:30:00"))
-                .andDo(document("events/POST"));
+                .andDo(document("events/POST",
+                        responseFields(
+                                fieldWithPath("id").description("Event identifier"),
+                                fieldWithPath("createdDate").description("Event creation date"),
+                                fieldWithPath("title").description("Event title"),
+                                fieldWithPath("description").description("Event description"),
+                                fieldWithPath("startDate").description("Event start date"),
+                                fieldWithPath("startTime").description("Event start time"),
+                                subsectionWithPath("_links").description("<<events-links, Links>> to other resources")
+                        )));
     }
 
 }

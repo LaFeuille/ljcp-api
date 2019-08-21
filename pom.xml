@@ -186,7 +186,7 @@
                         </goals>
                         <configuration>
                             <backend>html</backend>
-                            <doctype>book</doctype>
+                            <doctype>article</doctype>
                         </configuration>
                     </execution>
                 </executions>

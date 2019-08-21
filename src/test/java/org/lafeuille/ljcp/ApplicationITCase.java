@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.testcontainers.containers.PostgreSQLContainer;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest("ljcp.event.filler.enabled=" + true)
+@SpringBootTest
 @ContextConfiguration(initializers = ApplicationITCase.Initializer.class)
 public class ApplicationITCase {
 
@@ -26,11 +26,12 @@ public class ApplicationITCase {
     static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
         public void initialize(ConfigurableApplicationContext context) {
             TestPropertyValues.of(
+                    "ljcp.event.filler.enabled=" + true,
                     "spring.datasource.url=" + postgreSQLContainer.getJdbcUrl(),
                     "spring.datasource.username=" + postgreSQLContainer.getUsername(),
                     "spring.datasource.password=" + postgreSQLContainer.getPassword(),
-                    "spring.jpa.generate-ddl=true",
-                    "spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true"
+                    "spring.jpa.generate-ddl=" + true,
+                    "spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=" + true
             ).applyTo(context.getEnvironment());
         }
     }
