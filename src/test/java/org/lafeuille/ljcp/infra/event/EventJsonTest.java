@@ -30,8 +30,7 @@ public class EventJsonTest {
         event.setStartDate(LocalDate.of(1982, Month.AUGUST, 7));
         event.setStartTime(LocalTime.of(18, 30));
 
-        assertThat(json.write(event))
-                .isEqualToJson("{title:'My birthday', description:'Party for my birthday', startDate:'1982-08-07', startTime:'18:30:00'}");
+        assertThat(json.write(event)).isEqualToJson("Event.json");
     }
 
 }
