@@ -10,6 +10,7 @@ import javax.persistence.Lob;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.Clock;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -30,11 +31,15 @@ public class Event extends DomainBase {
     private LocalTime startTime;
 
     public Event() {
-        super();
-        this.startDate = LocalDate.now();
+        this(Clock.systemDefaultZone());
     }
 
-    public Event(Event that) {
+    public Event(@NotNull Clock clock) {
+        super(clock);
+        this.startDate = LocalDate.now(clock);
+    }
+
+    public Event(@NotNull Event that) {
         super(that);
         this.title = that.title;
         this.description = that.description;

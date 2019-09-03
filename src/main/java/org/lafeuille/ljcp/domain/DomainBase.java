@@ -11,6 +11,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.Clock;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -40,8 +41,8 @@ public abstract class DomainBase implements Persistable<UUID>, Serializable {
         this(that.id, that.createdDate, that.lastModifiedDate);
     }
 
-    protected DomainBase() {
-        this(UUID.randomUUID(), Instant.now(), null);
+    protected DomainBase(@NotNull Clock clock) {
+        this(UUID.randomUUID(), Instant.now(clock), null);
     }
 
     public Instant getCreatedDate() {

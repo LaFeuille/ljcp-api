@@ -9,9 +9,7 @@ import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.Month;
+import java.time.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,7 +22,8 @@ public class EventJsonTest {
 
     @Test
     public void event_write() throws IOException {
-        var event = new Event();
+        var clock = Clock.fixed(Instant.EPOCH, ZoneId.of("GMT"));
+        var event = new Event(clock);
         event.setTitle("My birthday");
         event.setDescription("Party for my birthday");
         event.setStartDate(LocalDate.of(1982, Month.AUGUST, 7));
