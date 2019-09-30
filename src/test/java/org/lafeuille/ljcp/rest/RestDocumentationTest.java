@@ -1,54 +1,40 @@
 package org.lafeuille.ljcp.rest;
 
-import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.lafeuille.ljcp.infra.SecurityTestExecutionListeners;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.restdocs.JUnitRestDocumentation;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.junit.Assume.assumeTrue;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
-import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
+import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessResponse;
+import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
-import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SecurityTestExecutionListeners
 @SpringBootTest
+@AutoConfigureMockMvc
+@AutoConfigureRestDocs(uriScheme = "https", uriHost = "example.com", uriPort = 443)
 public class RestDocumentationTest {
 
-    @Rule
-    public JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation();
-
+    @Autowired
     private MockMvc mockMvc;
 
     @Autowired
     private WebApplicationContext context;
-
-    @Before
-    public void setUp() {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.context)
-                .apply(springSecurity())
-                .apply(documentationConfiguration(this.restDocumentation)
-                        .uris()
-                        .withScheme("https")
-                        .withHost("example.com")
-                        .withPort(443))
-                .build();
-    }
 
     @Test
     public void GET_actuator_health() throws Exception {
@@ -56,7 +42,9 @@ public class RestDocumentationTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.status").value("UP"))
-                .andDo(document("actuator/health/GET"));
+                .andDo(document("actuator/health/GET",
+                        preprocessResponse(prettyPrint())
+                ));
     }
 
     @Test
@@ -70,7 +58,9 @@ public class RestDocumentationTest {
                 .andExpect(jsonPath("$.build.artifact").value("ljcp-api"))
                 .andExpect(jsonPath("$.build.name").value("ljcp-api"))
                 .andExpect(jsonPath("$.build.group").value("org.lafeuille"))
-                .andDo(document("actuator/info/GET"));
+                .andDo(document("actuator/info/GET",
+                        preprocessResponse(prettyPrint())
+                ));
     }
 
     @Test
@@ -81,7 +71,9 @@ public class RestDocumentationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$._embedded.events").isEmpty())
                 .andExpect(jsonPath("$.page.size").value(20))
-                .andDo(document("events/GET"));
+                .andDo(document("events/GET",
+                        preprocessResponse(prettyPrint())
+                ));
     }
 
     @Test
@@ -97,6 +89,7 @@ public class RestDocumentationTest {
                 .andExpect(jsonPath("startDate").value("1982-08-07"))
                 .andExpect(jsonPath("startTime").value("18:30:00"))
                 .andDo(document("events/POST",
+                        preprocessResponse(prettyPrint()),
                         responseFields(
                                 fieldWithPath("id").description("Event identifier"),
                                 fieldWithPath("createdDate").description("Event creation date"),
