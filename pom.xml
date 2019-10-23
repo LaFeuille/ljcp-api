@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.8.RELEASE</version>
+        <version>2.2.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -24,13 +24,13 @@
         <asciidoctor.maven.version>1.5.8</asciidoctor.maven.version>
         <auth0-spring-security-api.version>1.2.6</auth0-spring-security-api.version>
         <dependency-check.maven.version>5.2.2</dependency-check.maven.version>
-        <dockerfile.maven.version>1.4.12</dockerfile.maven.version>
+        <dockerfile.maven.version>1.4.13</dockerfile.maven.version>
         <ff4j.version>1.8.1</ff4j.version>
         <jacoco.maven.version>0.8.4</jacoco.maven.version>
         <java.version>11</java.version>
         <javafaker.version>1.0.1</javafaker.version>
         <javax-activation.version>1.2.0</javax-activation.version>
-        <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
+        <spring-cloud.version>Greenwich.SR3</spring-cloud.version>
         <testcontainers.version>1.12.2</testcontainers.version>
     </properties>
 

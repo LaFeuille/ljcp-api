@@ -1,6 +1,6 @@
 package org.lafeuille.ljcp.domain.event;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -10,7 +10,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class EventTest {
 
-    @Test
     public void copy_is_equal() {
         Event event0 = new Event();
         Event event1 = new Event(event0);
