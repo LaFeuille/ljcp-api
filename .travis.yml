@@ -1,9 +1,10 @@
 language: java
-jdk: openjdk10
+jdk: openjdk11
 
 addons:
   sonarcloud:
     organization: "lafeuille"
 
 script:
-  - ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
+  - ./mvnw org.owasp:dependency-check-maven:check
+  - ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar

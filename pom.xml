@@ -14,22 +14,32 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.5.RELEASE</version>
+        <version>2.2.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <asciidoctor.maven.version>1.5.6</asciidoctor.maven.version>
-        <dockerfile.maven.version>1.4.4</dockerfile.maven.version>
-        <ff4j.version>1.7.2</ff4j.version>
-        <java.version>10</java.version>
-        <javafaker.version>0.16</javafaker.version>
-        <javax-activation.version>1.1.1</javax-activation.version>
+        <asciidoctor.maven.version>1.5.8</asciidoctor.maven.version>
+        <auth0-spring-security-api.version>1.2.6</auth0-spring-security-api.version>
+        <dependency-check.maven.version>5.2.2</dependency-check.maven.version>
+        <dockerfile.maven.version>1.4.13</dockerfile.maven.version>
+        <ff4j.version>1.8.2</ff4j.version>
+        <jacoco.maven.version>0.8.5</jacoco.maven.version>
+        <java.version>11</java.version>
+        <javafaker.version>1.0.1</javafaker.version>
+        <javax-activation.version>1.2.0</javax-activation.version>
+        <spring-cloud.version>Greenwich.SR3</spring-cloud.version>
+        <testcontainers.version>1.12.3</testcontainers.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>auth0-spring-security-api</artifactId>
+            <version>${auth0-spring-security-api.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
@@ -80,6 +90,10 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
         <dependency>
@@ -92,7 +106,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-rest-hal-browser</artifactId>
+            <artifactId>spring-data-rest-hal-explorer</artifactId>
         </dependency>
 
         <dependency>
@@ -119,12 +133,36 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
             <version>${spring-security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>test</scope>
+            <version>${testcontainers.version}</version>
         </dependency>
     </dependencies>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacoco.maven.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.owasp</groupId>
+                    <artifactId>dependency-check-maven</artifactId>
+                    <version>${dependency-check.maven.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -149,7 +187,7 @@
                         </goals>
                         <configuration>
                             <backend>html</backend>
-                            <doctype>book</doctype>
+                            <doctype>article</doctype>
                         </configuration>
                     </execution>
                 </executions>
@@ -175,10 +213,23 @@
                         <version>${dockerfile.maven.version}</version>
                         <executions>
                             <execution>
-                                <id>default</id>
-                                <phase>install</phase>
+                                <id>build-image</id>
+                                <phase>package</phase>
                                 <goals>
                                     <goal>build</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>tag-image</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>tag</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>push-image</id>
+                                <phase>deploy</phase>
+                                <goals>
                                     <goal>push</goal>
                                 </goals>
                             </execution>
@@ -193,7 +244,7 @@
                         <dependencies>
                             <dependency>
                                 <groupId>javax.activation</groupId>
-                                <artifactId>activation</artifactId>
+                                <artifactId>javax.activation-api</artifactId>
                                 <version>${javax-activation.version}</version>
                             </dependency>
                         </dependencies>
