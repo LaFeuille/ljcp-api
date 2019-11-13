@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.0.RELEASE</version>
+        <version>2.2.1.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -23,7 +23,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <asciidoctor.maven.version>1.5.8</asciidoctor.maven.version>
         <auth0-spring-security-api.version>1.2.6</auth0-spring-security-api.version>
-        <dependency-check.maven.version>5.2.2</dependency-check.maven.version>
+        <dependency-check.maven.version>5.2.3</dependency-check.maven.version>
         <dockerfile.maven.version>1.4.13</dockerfile.maven.version>
         <ff4j.version>1.8.2</ff4j.version>
         <jacoco.maven.version>0.8.5</jacoco.maven.version>
