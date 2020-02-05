@@ -8,9 +8,10 @@ import java.time.Month;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class EventTest {
+class EventTest {
 
-    public void copy_is_equal() {
+    @Test
+    void copy_is_equal() {
         Event event0 = new Event();
         Event event1 = new Event(event0);
 
@@ -18,7 +19,7 @@ public class EventTest {
     }
 
     @Test
-    public void copy_has_same_hashcode() {
+    void copy_has_same_hashcode() {
         Event event0 = new Event();
         Event event1 = new Event(event0);
 
@@ -26,7 +27,7 @@ public class EventTest {
     }
 
     @Test
-    public void copy_has_same_properties() {
+    void copy_has_same_properties() {
         Event event0 = new Event();
         event0.setTitle("Foobar");
         event0.setDescription("Foobar description");

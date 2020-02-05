@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SecurityTestExecutionListeners
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs(uriScheme = "https", uriHost = "example.com", uriPort = 443)
-public class RestDocumentationTest {
+class RestDocumentationTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -34,7 +34,7 @@ public class RestDocumentationTest {
     private WebApplicationContext context;
 
     @Test
-    public void GET_actuator_health() throws Exception {
+    void GET_actuator_health() throws Exception {
         mockMvc.perform(get("/actuator/health")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -45,7 +45,7 @@ public class RestDocumentationTest {
     }
 
     @Test
-    public void GET_actuator_info() throws Exception {
+    void GET_actuator_info() throws Exception {
         assumeTrue(context.getResource("classpath:META-INF/build-info.properties").exists());
 
         mockMvc.perform(get("/actuator/info")
@@ -62,7 +62,7 @@ public class RestDocumentationTest {
 
     @Test
     @WithMockUser
-    public void GET_events() throws Exception {
+    void GET_events() throws Exception {
         mockMvc.perform(get("/events")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -75,7 +75,7 @@ public class RestDocumentationTest {
 
     @Test
     @WithMockUser
-    public void POST_events() throws Exception {
+    void POST_events() throws Exception {
         mockMvc.perform(post("/events")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)

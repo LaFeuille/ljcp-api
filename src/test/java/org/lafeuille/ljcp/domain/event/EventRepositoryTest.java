@@ -21,6 +21,7 @@ public class EventRepositoryTest {
     @Autowired
     private EventRepository repository;
 
+    @Test
     public void put_and_get() {
         var raw = new Event();
         var id = this.entityManager.persistAndGetId(raw, UUID.class);

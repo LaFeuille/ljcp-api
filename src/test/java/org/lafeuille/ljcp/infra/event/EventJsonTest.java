@@ -12,13 +12,13 @@ import java.time.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @JsonTest
-public class EventJsonTest {
+class EventJsonTest {
 
     @Autowired
     private JacksonTester<Event> json;
 
     @Test
-    public void event_write() throws IOException {
+    void event_write() throws IOException {
         var clock = Clock.fixed(Instant.EPOCH, ZoneId.of("GMT"));
         var event = new Event(clock);
         event.setTitle("My birthday");

@@ -6,10 +6,10 @@ import org.springframework.hateoas.EntityModel;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class EventProcessorTest {
+class EventProcessorTest {
 
     @Test
-    public void process() {
+    void process() {
         var eventModel = new EntityModel<>(new Event());
 
         var processor = new EventProcessor();
