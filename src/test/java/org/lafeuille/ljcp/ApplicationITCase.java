@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ApplicationITCase {
 
     @ClassRule
-    public static PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer();
+    public static PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer();
 
     @Autowired
     private EventRepository repository;
